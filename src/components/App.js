@@ -1,15 +1,17 @@
 // import logo from '/home/valverdea45/Development/code/phase-3/phase-3-project-react/phase-3-project-react/src/logo.svg';
 // import '/home/valverdea45/Development/code/phase-3/phase-3-project-react/phase-3-project-react/src/App.css';
 import PokemonList from "./PokemonList";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function App() {
 
   const [displayedPokemon, setDisplayedPokemon] = useState({})
 
+  useEffect(() => {
   fetch("http://localhost:9292/pokemons")
-  .then((data) => data.json())
-  .then((data) => setDisplayedPokemon(data))
+    .then((data) => data.json())
+    .then((data) => setDisplayedPokemon(data))
+  }, [])
 
   console.log(displayedPokemon)
 
