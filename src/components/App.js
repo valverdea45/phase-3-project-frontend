@@ -1,8 +1,18 @@
 // import logo from '/home/valverdea45/Development/code/phase-3/phase-3-project-react/phase-3-project-react/src/logo.svg';
 // import '/home/valverdea45/Development/code/phase-3/phase-3-project-react/phase-3-project-react/src/App.css';
 import PokemonList from "./PokemonList";
+import React, { useState } from "react";
 
 function App() {
+
+  const [displayedPokemon, setDisplayedPokemon] = useState({})
+
+  fetch("http://localhost:9292/pokemons")
+  .then((data) => data.json())
+  .then((data) => setDisplayedPokemon(data))
+
+  console.log(displayedPokemon)
+
   return (
     //  <div className="App">
     //   {<header className="App-header">
