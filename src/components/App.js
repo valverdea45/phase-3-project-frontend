@@ -5,15 +5,15 @@ import React, { useEffect, useState } from "react";
 
 function App() {
 
-  const [displayedPokemon, setDisplayedPokemon] = useState({})
+  const [pokemon, setPokemon] = useState({})
 
   useEffect(() => {
   fetch("http://localhost:9292/pokemons")
     .then((data) => data.json())
-    .then((data) => setDisplayedPokemon(data))
+    .then((data) => setPokemon(data))
   }, [])
 
-  console.log(displayedPokemon)
+  console.log(pokemon)
 
   return (
     //  <div className="App">
@@ -37,7 +37,7 @@ function App() {
         Welcome to your pokemon PC!!
       </header>
 
-      <PokemonList/>
+      <PokemonList pokemon={pokemon}/>
 
     </div>
   );
