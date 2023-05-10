@@ -1,10 +1,10 @@
 import React from "react";
 
-function Pokemon() {
+function Pokemon({ pokemon }) {
     return (
-        <p>
-            Single Pokemon!
-        </p>
+       <div>
+        <h2>{pokemon.name}</h2>
+       </div>
     )
 }
 
