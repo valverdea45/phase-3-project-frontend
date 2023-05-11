@@ -6,7 +6,9 @@ function AddPokemon() {
     const [pokemonLevel, setPokemonLevel] = useState(0)
     const [pokemonImage, setPokemonImage] = useState("")
 
-    function handleSubmit() {
+    function handleSubmit(e) {
+        e.preventDefault()
+        
         const objToBeSent = {
             name: pokemonName,
             level: pokemonLevel,
