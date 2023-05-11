@@ -1,6 +1,7 @@
 // import logo from '/home/valverdea45/Development/code/phase-3/phase-3-project-react/phase-3-project-react/src/logo.svg';
 // import '/home/valverdea45/Development/code/phase-3/phase-3-project-react/phase-3-project-react/src/App.css';
 import PokemonList from "./PokemonList";
+import AddPokemon from "./AddPokemon";
 
 function App() {
 
@@ -25,6 +26,8 @@ function App() {
       <header>
         Welcome to your Pokemon PC!!
       </header>
+
+
 
       <PokemonList/>
 
