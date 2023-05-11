@@ -5,7 +5,7 @@ function PokemonCard({ singlePokemon }) {
        <div>
         <h3>pokemon name: {singlePokemon.name}</h3>
         <p>pokemon level: {singlePokemon.level}</p>
-        <img src={singlePokemon.sprite}/>
+        <img src={singlePokemon.sprite} alt="pokemon"/>
        </div>
     )
 }
