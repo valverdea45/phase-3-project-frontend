@@ -27,7 +27,7 @@ function App() {
         Welcome to your Pokemon PC!!
       </header>
 
-
+      <AddPokemon/>
 
       <PokemonList/>
 
