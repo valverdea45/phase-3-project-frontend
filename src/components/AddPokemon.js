@@ -2,6 +2,32 @@ import React, { useEffect, useState } from "react";
 
 function AddPokemon() {
 
+    const [pokemonName, setPokemonName] = useState("")
+    const [pokemonLevel, setPokemonLevel] = useState(0)
+    const [pokemonImage, setPokemonImage] = useState("")
+
+    function handleSubmit() {
+        const objToBeSent = {
+            name: pokemonName,
+            level: pokemonLevel,
+            sprite: pokemonImage
+        }
+
+        fetch("http://localhost:9292/pokemons", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(objToBeSent)
+        })
+        .then((data) => data.json())
+        .then((newPokemon) => console.log(newPokemon))
+
+        setPokemonName("")
+        setPokemonLevel(0)
+        setPokemonImage("")
+    }
+
     
 
     return (
