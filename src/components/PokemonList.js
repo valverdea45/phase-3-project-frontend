@@ -1,12 +1,26 @@
-import React from "react";
-import Pokemon from "./Pokemon";
+import React, { useEffect, useState } from "react";
+import PokemonCard from "./PokemonCard";
 
-function PokemonList({ pokemon }) {
+function PokemonList() {
 
-const displayedPokemons = pokemon.map((pokemon) => <Pokemon pokemon={pokemon}/>)
+    const [allPokemon, setAllPokemon] = useState([])
+
+    useEffect(() => {
+        fetch("http://localhost:9292/pokemons")
+            .then((data) => data.json())
+            .then((data) => setAllPokemon(data))
+    }, [])
+
+    console.log("pokemon list component", allPokemon)
+
+    const displayedPokemon = allPokemon.map((singlePokemon) => <PokemonCard singlePokemon={singlePokemon} />)
+
+   
 
     return (
-        displayedPokemons
+        <div>
+            {displayedPokemon}
+        </div>
     )
 }
 

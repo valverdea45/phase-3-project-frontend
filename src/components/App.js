@@ -1,19 +1,8 @@
 // import logo from '/home/valverdea45/Development/code/phase-3/phase-3-project-react/phase-3-project-react/src/logo.svg';
 // import '/home/valverdea45/Development/code/phase-3/phase-3-project-react/phase-3-project-react/src/App.css';
 import PokemonList from "./PokemonList";
-import React, { useEffect, useState } from "react";
 
 function App() {
-
-  const [pokemon, setPokemon] = useState({})
-
-  useEffect(() => {
-  fetch("http://localhost:9292/pokemons")
-    .then((data) => data.json())
-    .then((data) => setPokemon(data))
-  }, [])
-
-  console.log(pokemon)
 
   return (
     //  <div className="App">
@@ -34,10 +23,10 @@ function App() {
     // </div>
     <div>
       <header>
-        Welcome to your pokemon PC!!
+        Welcome to your Pokemon PC!!
       </header>
 
-      <PokemonList pokemon={pokemon}/>
+      <PokemonList/>
 
     </div>
   );
