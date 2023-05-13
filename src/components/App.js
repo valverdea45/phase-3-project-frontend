@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import PokemonList from "./PokemonList";
 import AddPokemon from "./AddPokemon";
+import Navbar from "./Navbar"
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
       <header>
         Welcome to your Pokemon PC!!
       </header>
+      <Navbar/>
       <Switch>
         <Route exact path="/AddPokemon">
           <AddPokemon/>
