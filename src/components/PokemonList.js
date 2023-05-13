@@ -8,7 +8,6 @@ function PokemonList({ allPokemon }) {
     return (
         <div>
             {displayedPokemon}
-
         </div>
     )
 }
