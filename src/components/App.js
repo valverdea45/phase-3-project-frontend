@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import PokemonList from "./PokemonList";
 import AddPokemon from "./AddPokemon";
 import Navbar from "./Navbar"
+import Home from "./Home";
 
 
 function App() {
@@ -37,9 +38,6 @@ function App() {
     //   </header>}
     // </div>
     <div>
-      <header>
-        Welcome to your Pokemon PC!!
-      </header>
       <Navbar/>
       <Switch>
         <Route exact path="/AddPokemon">
@@ -47,6 +45,9 @@ function App() {
         </Route>
         <Route exact path="/PokemonList">
           <PokemonList allPokemon={allPokemon}/>
+        </Route>
+        <Route exact path="/">
+          <Home/>
         </Route>
       </Switch>
     </div>
