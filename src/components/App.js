@@ -1,7 +1,7 @@
 // import logo from '/home/valverdea45/Development/code/phase-3/phase-3-project-react/phase-3-project-react/src/logo.svg';
 // import '/home/valverdea45/Development/code/phase-3/phase-3-project-react/phase-3-project-react/src/App.css';
 import React, { useState, useEffect } from "react";
-import { Route, Switch } from "react-router-dom"
+import { Route, Switch } from "react-router-dom";
 import PokemonList from "./PokemonList";
 import AddPokemon from "./AddPokemon";
 
@@ -39,11 +39,14 @@ function App() {
       <header>
         Welcome to your Pokemon PC!!
       </header>
-
-      <AddPokemon/>
-
-      <PokemonList allPokemon={allPokemon}/>
-
+      <Switch>
+        <Route exact path="/AddPokemon">
+          <AddPokemon/>
+        </Route>
+        <Route exact path="/PokemonList">
+          <PokemonList allPokemon={allPokemon}/>
+        </Route>
+      </Switch>
     </div>
   );
 }
