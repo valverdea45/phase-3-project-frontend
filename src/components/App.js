@@ -1,9 +1,22 @@
 // import logo from '/home/valverdea45/Development/code/phase-3/phase-3-project-react/phase-3-project-react/src/logo.svg';
 // import '/home/valverdea45/Development/code/phase-3/phase-3-project-react/phase-3-project-react/src/App.css';
+import React, { useState, useEffect } from "react";
+import { Route, Switch } from "react-router-dom"
 import PokemonList from "./PokemonList";
 import AddPokemon from "./AddPokemon";
 
+
 function App() {
+
+  const [allPokemon, setAllPokemon] = useState([])
+
+  useEffect(() => {
+      fetch("http://localhost:9292/pokemons")
+          .then((data) => data.json())
+          .then((data) => setAllPokemon(data))
+  }, [])
+
+  console.log("pokemon list component", allPokemon)
 
   return (
     //  <div className="App">
@@ -29,7 +42,7 @@ function App() {
 
       <AddPokemon/>
 
-      <PokemonList/>
+      <PokemonList allPokemon={allPokemon}/>
 
     </div>
   );

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-function AddPokemon() {
+function AddPokemon({ onAddPokemon }) {
 
     const [pokemonName, setPokemonName] = useState("")
     const [pokemonLevel, setPokemonLevel] = useState(0)
@@ -8,7 +8,7 @@ function AddPokemon() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        
+
         const objToBeSent = {
             name: pokemonName,
             level: pokemonLevel,
@@ -23,7 +23,7 @@ function AddPokemon() {
             body: JSON.stringify(objToBeSent)
         })
         .then((data) => data.json())
-        .then((newPokemon) => console.log(newPokemon))
+        .then((newPokemon) => onAddPokemon(newPokemon))
 
         setPokemonName("")
         setPokemonLevel(0)
