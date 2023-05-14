@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Skill from "./Skill";
 
 function PokemonCard({ singlePokemon }) {
 
@@ -15,7 +16,9 @@ function PokemonCard({ singlePokemon }) {
         setSkillShowing(false)
     }
 
-
+    const pokemonSkillsDisplayed = singlePokemon.pokemon_skills.map((skill) => {
+        return <Skill skill={skill} />
+    })
 
     return (
        <div>
@@ -25,7 +28,7 @@ function PokemonCard({ singlePokemon }) {
         <button onClick={handleClick}>Skills</button>
         <button onClick={handleNewSkillClick}>Add Skills</button>
         {skillShowing ? (
-            <p>lol</p>
+            pokemonSkillsDisplayed
         ) : null}
         {addSkillShowing ? (
             <p>lmao</p>
