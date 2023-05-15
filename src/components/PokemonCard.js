@@ -31,7 +31,9 @@ function PokemonCard({ singlePokemon }) {
             pokemonSkillsDisplayed
         ) : null}
         {addSkillShowing ? (
-            <p>lmao</p>
+            <div>
+               <p>you can add skills here!</p> 
+            </div>
         ) : null}
         
        </div>
