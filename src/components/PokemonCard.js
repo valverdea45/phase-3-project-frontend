@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Skill from "./Skill";
 import AddSkill from "./AddSkill";
 
-function PokemonCard({ singlePokemon }) {
+function PokemonCard({ singlePokemon, onAddSkill }) {
 
     const [skillShowing, setSkillShowing] = useState(false)
     const [ addSkillShowing, setAddSkillShowing ] = useState(false)
@@ -32,7 +32,7 @@ function PokemonCard({ singlePokemon }) {
             pokemonSkillsDisplayed
         ) : null}
         {addSkillShowing ? (
-            <AddSkill/>
+            <AddSkill onAddSkill={onAddSkill} />
         ) : null}
         
        </div>
