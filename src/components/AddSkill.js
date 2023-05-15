@@ -1,13 +1,29 @@
 import React, { useState } from "react";
 
-function AddSkill() {
+function AddSkill({ onAddSkill }) {
 
     const [name, setName] = useState("")
     const [powerPoints, setPowerPoints] = useState(0)
     const [description, setDescription] = useState("")
 
-    function handleSubmit() {
+    function handleSubmit(e) {
         console.log("submitted")
+        e.preventDefault()
+        const objToBeSent = {
+            name: name,
+            description: description,
+            power_points: powerPoints
+        }
+
+        fetch("http://localhost:9292/skills", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(objToBeSent)
+        })
+        .then((data) => data.json())
+        .then((newSkill) => onAddSkill(newSkill))
     }
 
     return (

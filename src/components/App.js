@@ -20,6 +20,14 @@ function App() {
 
   console.log("pokemon list component", allPokemon)
 
+  function onAddSkill() {
+    console.log("added")
+  }
+
+  function onAddPokemon() {
+    console.log("Added Pokemon")
+  }
+
   return (
     //  <div className="App">
     //   {<header className="App-header">
@@ -41,10 +49,10 @@ function App() {
       <Navbar/>
       <Switch>
         <Route exact path="/AddPokemon">
-          <AddPokemon/>
+          <AddPokemon onAddPokemon={onAddPokemon}/>
         </Route>
         <Route exact path="/PokemonList">
-          <PokemonList allPokemon={allPokemon}/>
+          <PokemonList allPokemon={allPokemon} onAddSkill={onAddSkill}/>
         </Route>
         <Route exact path="/">
           <Home/>
