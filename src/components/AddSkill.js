@@ -33,6 +33,7 @@ function AddSkill({ onAddSkill }) {
                 <input onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder={"Skill name"}/>
                 <input onChange={(e) => setPowerPoints(e.target.value)} value={powerPoints} type="number" placeholder="Power Points"/>
                 <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" placeholder="Description"/>
+                <button type="submit">Add Skill</button>
             </form>
         </div>
     )
