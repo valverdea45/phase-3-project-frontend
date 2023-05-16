@@ -20,12 +20,8 @@ function App() {
 
   console.log("pokemon list component", allPokemon)
 
-  function onAddSkill() {
-    console.log("added")
-  }
-
-  function onAddPokemon() {
-    console.log("Added Pokemon")
+  function onAddPokemon(newPokemon) {
+    setAllPokemon([...allPokemon, newPokemon])
   }
 
   return (
@@ -52,7 +48,7 @@ function App() {
           <AddPokemon onAddPokemon={onAddPokemon}/>
         </Route>
         <Route exact path="/PokemonList">
-          <PokemonList allPokemon={allPokemon} onAddSkill={onAddSkill}/>
+          <PokemonList allPokemon={allPokemon}/>
         </Route>
         <Route exact path="/">
           <Home/>

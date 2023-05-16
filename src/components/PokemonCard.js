@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Skill from "./Skill";
 import AddSkill from "./AddSkill";
 
-function PokemonCard({ singlePokemon, onAddSkill }) {
+function PokemonCard({ singlePokemon }) {
 
     const [skillShowing, setSkillShowing] = useState(false)
     const [ addSkillShowing, setAddSkillShowing ] = useState(false)
+    const [ pokemonSkills, setPokemonSkills ] = useState(singlePokemon.pokemon_skills)
 
     function handleClick() {
         setSkillShowing((skillShowing) => !skillShowing)
@@ -17,9 +18,13 @@ function PokemonCard({ singlePokemon, onAddSkill }) {
         setSkillShowing(false)
     }
 
-    const pokemonSkillsDisplayed = singlePokemon.pokemon_skills.map((skill) => {
-        return <Skill skill={skill} />
+    const pokemonSkillsDisplayed = pokemonSkills.map((skill) => {
+        return <Skill key={skill.id} skill={skill} />
     })
+
+    function onAddSkill(newSkill) {
+        setPokemonSkills([...pokemonSkills, newSkill])
+    }
 
     return (
        <div>

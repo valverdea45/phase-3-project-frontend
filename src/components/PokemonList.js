@@ -1,9 +1,9 @@
 import React from "react";
 import PokemonCard from "./PokemonCard";
 
-function PokemonList({ allPokemon, onAddSkill }) {
+function PokemonList({ allPokemon }) {
 
-    const displayedPokemon = allPokemon.map((singlePokemon) => <PokemonCard singlePokemon={singlePokemon} onAddSkill={onAddSkill} />)
+    const displayedPokemon = allPokemon.map((singlePokemon) => <PokemonCard key={singlePokemon.id} singlePokemon={singlePokemon}/>)
 
     return (
         <div>
