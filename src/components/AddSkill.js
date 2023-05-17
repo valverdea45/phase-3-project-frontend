@@ -7,8 +7,11 @@ function AddSkill({ onAddSkill }) {
     const [description, setDescription] = useState("")
 
     function handleSubmit(e) {
+
         console.log("submitted")
+
         e.preventDefault()
+        
         const objToBeSent = {
             name: name,
             description: description,
