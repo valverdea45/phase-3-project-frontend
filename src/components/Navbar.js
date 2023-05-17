@@ -13,12 +13,12 @@ const linkStyles = {
 function Navbar() {
     return (
         <div>
-            <NavLink to="/AddPokemon" exact style={linkStyles} activeStyle={{
+            <NavLink to="/pokemons/new" exact style={linkStyles} activeStyle={{
                 background: "darkblue"
             }}>
                 Add Pokemon
             </NavLink>
-            <NavLink to="/PokemonList" exact style={linkStyles} activeStyle={{
+            <NavLink to="/pokemons" exact style={linkStyles} activeStyle={{
                 background: "darkblue"
             }}>
                 Pokemon List

@@ -44,10 +44,10 @@ function App() {
     <div>
       <Navbar/>
       <Switch>
-        <Route exact path="/AddPokemon">
+        <Route exact path="/pokemons/new">
           <AddPokemon onAddPokemon={onAddPokemon}/>
         </Route>
-        <Route exact path="/PokemonList">
+        <Route exact path="/pokemons">
           <PokemonList allPokemon={allPokemon}/>
         </Route>
         <Route exact path="/">
