@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function AddSkill({ onAddSkill }) {
+function AddSkill({ onAddSkill, pokemonId }) {
 
     const [name, setName] = useState("")
     const [powerPoints, setPowerPoints] = useState(0)
@@ -11,11 +11,12 @@ function AddSkill({ onAddSkill }) {
         console.log("submitted")
 
         e.preventDefault()
-        
+
         const objToBeSent = {
             name: name,
             description: description,
-            power_points: powerPoints
+            power_points: powerPoints,
+            pokemonId: pokemonId
         }
 
         fetch("http://localhost:9292/skills", {
@@ -26,7 +27,14 @@ function AddSkill({ onAddSkill }) {
             body: JSON.stringify(objToBeSent)
         })
         .then((data) => data.json())
-        .then((newSkill) => onAddSkill(newSkill))
+        .then((newSkills) => {
+           onAddSkill(newSkills) 
+        })
+
+
+        setName("")
+        setPowerPoints(0)
+        setDescription("")
     }
 
     return (

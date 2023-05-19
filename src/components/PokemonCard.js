@@ -25,12 +25,23 @@ function PokemonCard({ singlePokemon }) {
         setNoSkills(false)
     }
 
+    function onUpdatedSkill(updatedSkill) {
+        const updatedSkills = pokemonSkills.map((skill) => {
+            if (skill.id === updatedSkill.id) {
+                return updatedSkill
+            } else {
+                return skill
+            }
+        })
+        setPokemonSkills(updatedSkills)
+    }
+
     const pokemonSkillsDisplayed = pokemonSkills.map((skill) => {
-        return <Skill key={skill.id} skill={skill} />
+        return <Skill key={skill.id} skill={skill} onUpdatedSkill={onUpdatedSkill} />
     })
 
-    function onAddSkill(newSkill) {
-        setPokemonSkills([...pokemonSkills, newSkill])
+    function onAddSkill(newSkills) {
+        setPokemonSkills(newSkills)
     }
 
     return (
@@ -50,7 +61,7 @@ function PokemonCard({ singlePokemon }) {
                 </div>
             ) : null}
             {addSkillShowing ? (
-                <AddSkill onAddSkill={onAddSkill} />
+                <AddSkill onAddSkill={onAddSkill} pokemonId={singlePokemon.id}/>
             ) : null}
 
         </div>
