@@ -58,8 +58,11 @@ function AddPokemon({ onAddPokemon }) {
         <div>
             <header>Add a Pokemon to your PC!</header>
             <form onSubmit={handleSubmit}>
-                <input onChange={(e) => setPokemonName(e.target.value)} value={pokemonName} type="text" placeholder="pokemon name"/>
+                <label> Name: </label>
+                <input onChange={(e) => setPokemonName(e.target.value)} title="Name" value={pokemonName} type="text" placeholder="pokemon name"/>
+                <label> Level: </label>
                 <input onChange={(e) => setPokemonLevel(e.target.value)} value={pokemonLevel} type="number" placeholder="pokemon level"/>
+                <label> Image: </label>
                 <input onChange={(e) => setPokemonImage(e.target.value)} value={pokemonImage} type="text" placeholder="pokemon image"/>
                 {/* <input onChange={(e) => setSkillName(e.target.value)} value={skillName} type="text" placeholder="Skill Name"/>
                 <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" placeholder="Skill Description"/>
