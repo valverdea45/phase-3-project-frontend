@@ -8,6 +8,10 @@ function PokemonCard({ singlePokemon }) {
     const [addSkillShowing, setAddSkillShowing] = useState(false)
     const [pokemonSkills, setPokemonSkills] = useState(singlePokemon.pokemon_skills)
     const [noSkills, setNoSkills] = useState(false)
+    const [onEditMode, setOnEditMode] = useState(false)
+    const [name, setName] = useState(singlePokemon.name)
+    const [image, setImage] = useState(singlePokemon.sprite)
+    const [level, setLevel] = useState(singlePokemon.level)
 
     function handleClick() {
         if (pokemonSkills.length === 0) {
@@ -36,19 +40,49 @@ function PokemonCard({ singlePokemon }) {
         setPokemonSkills(updatedSkills)
     }
 
+    function handleSkillDelete(deletedSkill) {
+        const newArrayOfSkills = pokemonSkills.filter((skill) => skill.id !== deletedSkill.id)
+        setPokemonSkills(newArrayOfSkills)
+    }
+
     const pokemonSkillsDisplayed = pokemonSkills.map((skill) => {
-        return <Skill key={skill.id} skill={skill} onUpdatedSkill={onUpdatedSkill} />
+        return <Skill key={skill.id} skill={skill} onUpdatedSkill={onUpdatedSkill} handleSkillDelete={handleSkillDelete} />
     })
 
     function onAddSkill(newSkills) {
         setPokemonSkills(newSkills)
     }
 
+    function handleEditClick() {
+        setOnEditMode((onEditMode) => !onEditMode)
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        console.log("submitted")
+        
+    }
+
     return (
         <div>
-            <h3>pokemon name: {singlePokemon.name}</h3>
-            <p>pokemon level: {singlePokemon.level}</p>
-            <img src={singlePokemon.sprite} alt="pokemon" />
+            {onEditMode ? (
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        <h3>Name: <input onChange={(e) => setName(e.target.value)} value={name} placeholder={name} type="text" /></h3>
+                        <p>Level: <input onChange={(e) => setLevel(e.target.value)} value={level} placeholder={level} type="number" /></p>
+                        <p>Image: <input onChange={(e) => setImage(e.target.value)} value={image} placeholder="Image" type="text" /></p>
+                        <button type="submit"> Save Changes </button>
+                        <button onClick={handleEditClick}> Cancel </button>
+                    </form>
+                </div>
+            ) :
+                <div>
+                    <h3>Name: {name}</h3>
+                    <p>Level: {level}</p>
+                    <button onClick={handleEditClick} >Edit Pokemon</button>
+                    <img src={image} alt="pokemon" />
+                </div>}
+            
             <button onClick={handleClick}>Skills</button>
             <button onClick={handleNewSkillClick}>Add Skills</button>
             {skillShowing ? (
@@ -61,7 +95,7 @@ function PokemonCard({ singlePokemon }) {
                 </div>
             ) : null}
             {addSkillShowing ? (
-                <AddSkill onAddSkill={onAddSkill} pokemonId={singlePokemon.id}/>
+                <AddSkill onAddSkill={onAddSkill} pokemonId={singlePokemon.id} />
             ) : null}
 
         </div>
