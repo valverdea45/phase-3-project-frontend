@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Skill({ skill, onUpdatedSkill }) {
+function Skill({ skill, onUpdatedSkill, handleSkillDelete }) {
 
     const [onEditMode, setOnEditMode] = useState(false)
     const [name, setName] = useState(skill.name)
@@ -11,15 +11,15 @@ function Skill({ skill, onUpdatedSkill }) {
         setOnEditMode((onEditMode) => !onEditMode)
     }
 
-    const objToBeSent = {
-        name: name,
-        description: description,
-        power_points: powerPoints
-    }
-
     function handleSubmit(e) {
         console.log("submitted")
         e.preventDefault()
+
+        const objToBeSent = {
+            name: name,
+            description: description,
+            power_points: powerPoints
+        }
 
         fetch(`http://localhost:9292/skills/${skill.id}`, {
             method: "PATCH",
@@ -28,8 +28,8 @@ function Skill({ skill, onUpdatedSkill }) {
             },
             body: JSON.stringify(objToBeSent)
         })
-        .then((data) => data.json())
-        .then((updatedSkill) => onUpdatedSkill(updatedSkill))
+            .then((data) => data.json())
+            .then((updatedSkill) => onUpdatedSkill(updatedSkill))
 
         setOnEditMode(false)
 
@@ -39,7 +39,11 @@ function Skill({ skill, onUpdatedSkill }) {
     }
 
     function handleDeleteClick() {
-        
+        fetch(`http://localhost:9292/skills/${skill.id}`, {
+            method: "DELETE"
+        })
+        .then((data) => data.json())
+        .then((deletedSkill) => handleSkillDelete(deletedSkill))
     }
 
     return (
@@ -47,18 +51,18 @@ function Skill({ skill, onUpdatedSkill }) {
             {onEditMode ? (
                 <div>
                     <form onSubmit={handleSubmit}>
-                        <p>Skill name: <input onChange={(e) => setName(e.target.value)} value={name} placeholder={name} type="text" /></p>
-                        <p>Skill Description: <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" placeholder={description} /></p>
-                        <p>Skill Power Points: <input onChange={(e) => setPowerPoints(e.target.value)} value={powerPoints} type="number" placeholder={powerPoints} /></p>
+                        <p>Name: <input onChange={(e) => setName(e.target.value)} value={name} placeholder={name} type="text" /></p>
+                        <p>Description: <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" placeholder={description} /></p>
+                        <p>Power Points: <input onChange={(e) => setPowerPoints(e.target.value)} value={powerPoints} type="number" placeholder={powerPoints} /></p>
                         <button type="submit"> Save Changes </button>
                     </form>
 
                 </div>
             ) :
                 <div>
-                    <p>Skill name: {skill.name}</p>
-                    <p>Skill description: {skill.description}</p>
-                    <p>Skill power points: {skill.power_points}</p>
+                    <p>Name: {skill.name}</p>
+                    <p>Description: {skill.description}</p>
+                    <p>Power Points: {skill.power_points}</p>
                 </div>}
             <button onClick={handleClick} >Edit Skill</button>
             <button onClick={handleDeleteClick}>Delete Skill</button>
