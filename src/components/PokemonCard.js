@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Skill from "./Skill";
 import AddSkill from "./AddSkill";
 
-function PokemonCard({ singlePokemon }) {
+function PokemonCard({ singlePokemon, onPokemonUpdate, handlePokemonDelete }) {
 
     const [skillShowing, setSkillShowing] = useState(false)
     const [addSkillShowing, setAddSkillShowing] = useState(false)
@@ -49,8 +49,9 @@ function PokemonCard({ singlePokemon }) {
         return <Skill key={skill.id} skill={skill} onUpdatedSkill={onUpdatedSkill} handleSkillDelete={handleSkillDelete} />
     })
 
-    function onAddSkill(newSkills) {
-        setPokemonSkills(newSkills)
+
+    function onAddSkill(newSkill) {
+        setPokemonSkills([...pokemonSkills, newSkill])
     }
 
     function handleEditClick() {
@@ -60,7 +61,31 @@ function PokemonCard({ singlePokemon }) {
     function handleSubmit(e) {
         e.preventDefault()
         console.log("submitted")
-        
+        const objToBeSent = {
+            name: name,
+            level: level,
+            sprite: image
+        }
+
+        fetch(`http://localhost:9292/pokemons/${singlePokemon.id}`, {
+            method:"PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(objToBeSent)
+        })
+        .then((data) => data.json())
+        .then((updatedPokemon) => onPokemonUpdate(updatedPokemon))
+
+        setOnEditMode(false)
+    }
+
+    function handleReleaseClick() {
+        fetch(`http://localhost:9292/pokemons/${singlePokemon.id}`, {
+            method: "DELETE"
+        })
+        .then((data) => data.json())
+        .then((deletedPokemon) => handlePokemonDelete(deletedPokemon))
     }
 
     return (
@@ -82,7 +107,7 @@ function PokemonCard({ singlePokemon }) {
                     <button onClick={handleEditClick} >Edit Pokemon</button>
                     <img src={image} alt="pokemon" />
                 </div>}
-            
+            <button onClick={handleReleaseClick}> Release Pokemon </button>
             <button onClick={handleClick}>Skills</button>
             <button onClick={handleNewSkillClick}>Add Skills</button>
             {skillShowing ? (

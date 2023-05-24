@@ -13,15 +13,31 @@ function App() {
   const [allPokemon, setAllPokemon] = useState([])
 
   useEffect(() => {
-      fetch("http://localhost:9292/pokemons")
-          .then((data) => data.json())
-          .then((data) => setAllPokemon(data))
+    fetch("http://localhost:9292/pokemons")
+      .then((data) => data.json())
+      .then((data) => setAllPokemon(data))
   }, [])
 
   console.log("pokemon list component", allPokemon)
 
   function onAddPokemon(newPokemon) {
     setAllPokemon([...allPokemon, newPokemon])
+  }
+
+  function onPokemonUpdate(updatedPokemon) {
+    const newArrayOfPokemon = allPokemon.map((pokemon) => {
+      if (pokemon.id === updatedPokemon.id) {
+        return updatedPokemon
+      } else {
+        return pokemon
+      }
+    })
+    setAllPokemon(newArrayOfPokemon)
+  }
+
+  function handlePokemonDelete(deletedPokemon) {
+    const newArrayOfPokemon = allPokemon.filter((pokemon) => pokemon.id !== deletedPokemon.id)
+    setAllPokemon(newArrayOfPokemon)
   }
 
   return (
@@ -42,16 +58,16 @@ function App() {
     //   </header>}
     // </div>
     <div>
-      <Navbar/>
+      <Navbar />
       <Switch>
         <Route exact path="/pokemons/new">
-          <AddPokemon onAddPokemon={onAddPokemon}/>
+          <AddPokemon onAddPokemon={onAddPokemon} />
         </Route>
         <Route exact path="/pokemons">
-          <PokemonList allPokemon={allPokemon}/>
+          <PokemonList allPokemon={allPokemon} onPokemonUpdate={onPokemonUpdate} handlePokemonDelete={handlePokemonDelete} />
         </Route>
         <Route exact path="/">
-          <Home/>
+          <Home />
         </Route>
       </Switch>
     </div>
