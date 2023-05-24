@@ -35,8 +35,8 @@ function App() {
     setAllPokemon(newArrayOfPokemon)
   }
 
-  function handlePokemonDelete(deletedPokemon) {
-    const newArrayOfPokemon = allPokemon.filter((pokemon) => pokemon.id !== deletedPokemon.id)
+  function handlePokemonDelete(deletedPokemonId) {
+    const newArrayOfPokemon = allPokemon.filter((pokemon) => pokemon.id !== deletedPokemonId)
     setAllPokemon(newArrayOfPokemon)
   }
 

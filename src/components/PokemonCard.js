@@ -40,8 +40,8 @@ function PokemonCard({ singlePokemon, onPokemonUpdate, handlePokemonDelete }) {
         setPokemonSkills(updatedSkills)
     }
 
-    function handleSkillDelete(deletedSkill) {
-        const newArrayOfSkills = pokemonSkills.filter((skill) => skill.id !== deletedSkill.id)
+    function handleSkillDelete(deletedSkillId) {
+        const newArrayOfSkills = pokemonSkills.filter((skill) => skill.id !== deletedSkillId)
         setPokemonSkills(newArrayOfSkills)
     }
 
@@ -84,8 +84,7 @@ function PokemonCard({ singlePokemon, onPokemonUpdate, handlePokemonDelete }) {
         fetch(`http://localhost:9292/pokemons/${singlePokemon.id}`, {
             method: "DELETE"
         })
-        .then((data) => data.json())
-        .then((deletedPokemon) => handlePokemonDelete(deletedPokemon))
+        .then(handlePokemonDelete(singlePokemon.id))
     }
 
     return (

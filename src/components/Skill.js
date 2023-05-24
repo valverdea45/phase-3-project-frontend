@@ -38,13 +38,16 @@ function Skill({ skill, onUpdatedSkill, handleSkillDelete }) {
         // setPowerPoints("")
     }
 
+    // dont need to wait for json response already have skill id
+
     function handleDeleteClick() {
         fetch(`http://localhost:9292/skills/${skill.id}`, {
             method: "DELETE"
         })
-        .then((data) => data.json())
-        .then((deletedSkill) => handleSkillDelete(deletedSkill))
+        .then(handleSkillDelete(skill.id))
     }
+
+    // placeholders only are used when inputs value is empty
 
     return (
         <div>
