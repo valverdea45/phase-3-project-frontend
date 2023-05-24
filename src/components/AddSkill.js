@@ -21,7 +21,7 @@ function AddSkill({ onAddSkill, pokemonId }) {
                 name: name,
                 description: description,
                 power_points: powerPoints,
-                pokemonId: pokemonId
+                pokemon_id: pokemonId
             }
 
             fetch("http://localhost:9292/skills", {
