@@ -6,7 +6,6 @@ function PokemonCard({ singlePokemon, onPokemonUpdate, handlePokemonDelete }) {
 
     const [skillShowing, setSkillShowing] = useState(false)
     const [addSkillShowing, setAddSkillShowing] = useState(false)
-    const [pokemonSkills, setPokemonSkills] = useState(singlePokemon.pokemon_skills)
     const [noSkills, setNoSkills] = useState(false)
     const [onEditMode, setOnEditMode] = useState(false)
     const [name, setName] = useState(singlePokemon.name)
@@ -14,7 +13,7 @@ function PokemonCard({ singlePokemon, onPokemonUpdate, handlePokemonDelete }) {
     const [level, setLevel] = useState(singlePokemon.level)
 
     function handleClick() {
-        if (pokemonSkills.length === 0) {
+        if (singlePokemon.pokemon_skills.length === 0) {
             setNoSkills((noSkills) => !noSkills)
             setAddSkillShowing(false)
         } else {
@@ -30,28 +29,37 @@ function PokemonCard({ singlePokemon, onPokemonUpdate, handlePokemonDelete }) {
     }
 
     function onUpdatedSkill(updatedSkill) {
-        const updatedSkills = pokemonSkills.map((skill) => {
+        const updatedSkills = singlePokemon.pokemon_skills.map((skill) => {
             if (skill.id === updatedSkill.id) {
                 return updatedSkill
             } else {
                 return skill
             }
         })
-        setPokemonSkills(updatedSkills)
+
+        singlePokemon.pokemon_skills = updatedSkills
+
+        onPokemonUpdate(singlePokemon)
     }
 
     function handleSkillDelete(deletedSkillId) {
-        const newArrayOfSkills = pokemonSkills.filter((skill) => skill.id !== deletedSkillId)
-        setPokemonSkills(newArrayOfSkills)
+        const newArrayOfSkills = singlePokemon.pokemon_skills.filter((skill) => skill.id !== deletedSkillId)
+        singlePokemon.pokemon_skills = newArrayOfSkills
+        onPokemonUpdate(singlePokemon)
     }
 
-    const pokemonSkillsDisplayed = pokemonSkills.map((skill) => {
+    const pokemonSkillsDisplayed = singlePokemon.pokemon_skills.map((skill) => {
         return <Skill key={skill.id} skill={skill} onUpdatedSkill={onUpdatedSkill} handleSkillDelete={handleSkillDelete} />
     })
 
 
     function onAddSkill(newSkill) {
-        setPokemonSkills([...pokemonSkills, newSkill])
+
+       const updatedSkills = [...singlePokemon.pokemon_skills, newSkill]
+
+       singlePokemon.pokemon_skills = updatedSkills
+
+        onPokemonUpdate(singlePokemon)
     }
 
     function handleEditClick() {
@@ -86,6 +94,8 @@ function PokemonCard({ singlePokemon, onPokemonUpdate, handlePokemonDelete }) {
         })
         .then(handlePokemonDelete(singlePokemon.id))
     }
+
+    
 
     return (
         <div>
