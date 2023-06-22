@@ -9,13 +9,10 @@ function AddSkill({ onAddSkill, pokemonId }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-
+        
         if (name === "" || powerPoints === 0 || description === "") {
             setIsInvalidInput(true)
         } else {
-            console.log("submitted")
-
-            
 
             const objToBeSent = {
                 name: name,
@@ -32,10 +29,9 @@ function AddSkill({ onAddSkill, pokemonId }) {
                 body: JSON.stringify(objToBeSent)
             })
                 .then((data) => data.json())
-                .then((newSkills) => {
-                    onAddSkill(newSkills)
+                .then((newSkill) => {
+                    onAddSkill(newSkill)
                 })
-
 
             setName("")
             setPowerPoints(0)

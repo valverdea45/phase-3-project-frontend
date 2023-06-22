@@ -12,7 +12,6 @@ function Skill({ skill, onUpdatedSkill, handleSkillDelete }) {
     }
 
     function handleSubmit(e) {
-        console.log("submitted")
         e.preventDefault()
 
         const objToBeSent = {
@@ -32,22 +31,16 @@ function Skill({ skill, onUpdatedSkill, handleSkillDelete }) {
             .then((updatedSkill) => onUpdatedSkill(updatedSkill))
 
         setOnEditMode(false)
-
-        // setName("")
-        // setDescription("")
-        // setPowerPoints("")
     }
-
-    // dont need to wait for json response already have skill id
-
+    
     function handleDeleteClick() {
+
+        handleSkillDelete(skill.id)
+
         fetch(`http://localhost:9292/skills/${skill.id}`, {
             method: "DELETE"
         })
-        .then(handleSkillDelete(skill.id))
     }
-
-    // placeholders only are used when inputs value is empty
 
     return (
         <div>
@@ -63,9 +56,9 @@ function Skill({ skill, onUpdatedSkill, handleSkillDelete }) {
                 </div>
             ) :
                 <div>
-                    <p>Name: {skill.name}</p>
-                    <p>Description: {skill.description}</p>
-                    <p>Power Points: {skill.power_points}</p>
+                    <p>Name: {name}</p>
+                    <p>Description: {description}</p>
+                    <p>Power Points: {powerPoints}</p>
                 </div>}
             <button onClick={handleClick} >Edit Skill</button>
             <button onClick={handleDeleteClick}>Delete Skill</button>
