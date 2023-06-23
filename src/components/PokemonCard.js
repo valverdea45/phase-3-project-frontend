@@ -68,7 +68,6 @@ function PokemonCard({ singlePokemon, onPokemonUpdate, handlePokemonDelete }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log("submitted")
         const objToBeSent = {
             name: name,
             level: level,
@@ -106,7 +105,6 @@ function PokemonCard({ singlePokemon, onPokemonUpdate, handlePokemonDelete }) {
                         <p>Level: <input onChange={(e) => setLevel(e.target.value)} value={level} placeholder={level} type="number" /></p>
                         <p>Image: <input onChange={(e) => setImage(e.target.value)} value={image} placeholder="Image" type="text" /></p>
                         <button type="submit"> Save Changes </button>
-                        <button onClick={handleEditClick}> Cancel </button>
                     </form>
                 </div>
             ) :
