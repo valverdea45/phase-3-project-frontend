@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Welcome to the Pokemon PC!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This Project is supposed to mimic a pokemon personal computer. In every pokemon game every pokemon trainer gets access to a personal computer where they can store pokemon. The pokemon personal computer can also change the names, upgrade levels, and change skills. This is project connects to SQlite 3 database to hold all the info of the pokemon and skills.
 
-In the project directory, you can run:
+Upon loading into the web app there is going to be two tabs in the Navbar.
 
-### `npm start`
+### Add Pokemon
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In this tab you can add your favorite pokemon by getting an image of them and giving them a name and level. The pokemon's level, name, and image can be changed later! So no need to stay on this tab for long just try adding a couple of your favorite pokemon!
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Pokemon List 
 
-### `npm test`
+In this tab is where all the magic happens! So here we have a list of all the pokemon you added in the Add Pokemon tab. There are a couple of new fetures that you are going to notice. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+With each Pokemon you can click the Edit Pokemon button to edit the pokemon's name, level, and image. You can also release them as well BUT once a pokemon is released you cannot undo it and you would have to add them back through the Add Pokemon tab.
 
-### `npm run build`
+Each pokemon also has skills. If you click on the Add Skill Button you can make a skill for that pokemon. Every skill added must have a name, power points, and a description. For those who don't know power points is how many times a pokemon can use a skill. Upon adding a skill if you click the skill button you can see all the pokemon's skills.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Every pokemon skill listed after clicking the skill button can be edited or deleted. WARNING after a skill is deleted there is no undo and must be added back via Add Skill button.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I created a video to explain all the fetures in real time 
+https://www.youtube.com/watch?v=7zRZlmuRkgw
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This project has both a front-end and back-end
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Front End
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+For the front end it runs on the lastest version of React
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To get the front end up and running it will need to be cloned into your computer and then once that is done you will need to run the following code in a terminal
 
-## Learn More
+npm start
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Once that is runned the web app will open up.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Back End
 
-### Code Splitting
+The back end runs using the latest version of Ruby/Sinatra/ActiveRecord/SQlite3
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To get the back end up and running you will need to run bundle install to install all the dependencies. After that all you have to do is run bundle exec rake server to get the server up and running.
 
-### Analyzing the Bundle Size
+## Support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+If there are any queastions you can reach me via email at
+adrianvalverde45@gmail.com
 
-### Making a Progressive Web App
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+MIT License
 
-### Advanced Configuration
+Copyright (c) [2023] [Adrian Valverde]
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-### Deployment
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
